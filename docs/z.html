@@ -223,7 +223,7 @@ controlPanel([
   {label: 'gridSpacing', type: 'range', min: 0.1, max: 10, initial: state.gridSpacing}
 ], {theme: 'dark', position: 'top-left'}).on('input', function (data) {
   Object.assign(state, data);
-  dirty = true;
+  isDirty = true;
 });
 
 var el = document.querySelector('.control-panel');
@@ -235,17 +235,16 @@ for (var i = 0; i < events.length; i++) {
   });
 }
 
-var dirty = true;
+var isDirty = true;
 
 regl.frame(() => {
-  camera(({camDirty}) => {
-    dirty = dirty || camDirty;
+  camera(({dirty}) => {
+    isDirty = isDirty || dirty;
 
-    if (dirty) {
-      console.log('state.saturation:', state.saturation);
-      complexMap(state);
-      dirty = false;
-    }
+    if (!isDirty) return;
+
+    complexMap(state);
+    isDirty = false;
   });
 });
 
