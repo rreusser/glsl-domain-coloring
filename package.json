@@ -4,7 +4,8 @@
   "description": "A glslify module for domain coloring in the complex plane",
   "glslify": "index.glsl",
   "scripts": {
-    "build": "for i in docs/src/*.js; do out=`echo $i |sed -e \"s/src\\/\\([^\\.]*\\)\\.js/\\1.html/\"`; browserify $i -t glslify | indexhtmlify > $out; done"
+    "build": "for i in docs/src/*.js; do out=`echo $i |sed -e \"s/src\\/\\([^\\.]*\\)\\.js/\\1.html/\"`; browserify $i -t glslify | indexhtmlify > $out; done",
+    "serve": "budo docs/src/z.js --live --open -- -t glslify"
   },
   "keywords": [
     "glsl",
