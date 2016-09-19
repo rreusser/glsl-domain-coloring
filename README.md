@@ -9,7 +9,7 @@
 [Domain coloring](https://en.wikipedia.org/wiki/Domain_coloring) is an improvement over simple coloring by the complex argument and lightness by the magnitude. It makes the function easier to understand by applying the following logic:
 
 - the complex argument determines the hue. (Red is positive real and cyan is negative real, while green-yellow is positive imaginary and blue-magenta is negative imaginary.)
-- the complex magnitude are lightened. The contours occur near integer values of `log2(|z|)`.
+- contours of the complex magnitude are lightened. The contours occur near integer values of `log2(|z|)`.
 - real and imaginary grid lines are darkened. With grid spacing (1, 1), this means that the dark lines are simply the unit grid.
 
 The result of these choices is that the behavior of the function is easier to discern than by a simple colormap. For example, the function `f(z) = z` plotted from -2 to 2 on the real and imaginary axes results in the colormap:
