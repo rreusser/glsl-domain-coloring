@@ -3,6 +3,7 @@
 var regl = require('regl')({});
 var camera2d = require('./lib/camera-2d');
 var glslify = require('glslify');
+var controlPanel = require('control-panel');
 
 var frag = glslify(__dirname + '/eqn.glsl');
 
@@ -28,6 +29,12 @@ const complexMap = regl({
       gl_Position = vec4(position, 0, 1);
     }
   `,
+  uniforms: {
+    saturation: regl.prop('saturation'),
+    gridSpacing: regl.prop('gridSpacing'),
+    gridStrength: regl.prop('gridStrength'),
+    magStrength: regl.prop('magStrength'),
+  },
   attributes: {position: [[-2, -2], [2, -2], [0, 4]]},
   depth: {enable: false},
   count: 3,
