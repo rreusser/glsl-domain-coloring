@@ -1,0 +1,31 @@
+{
+  "name": "glsl-domain-coloring",
+  "version": "1.0.0",
+  "description": "A glslify module for domain coloring in the complex plane",
+  "glslify": "index.glsl",
+  "scripts": {
+    "build": "for i in docs/src/*.js; do out=`echo $i |sed -e \"s/src\\/\\([^\\.]*\\)\\.js/\\1.html/\"`; browserify $i -t glslify | indexhtmlify > $out; done"
+  },
+  "keywords": [
+    "glsl",
+    "glslify",
+    "complex",
+    "domain-coloring",
+    "webgl"
+  ],
+  "author": "Ricky Reusser",
+  "license": "MIT",
+  "dependencies": {
+    "glsl-hsv2rgb": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "budo": "^9.2.0",
+    "gl-mat4": "^1.1.4",
+    "glslify": "^5.1.0",
+    "indexhtmlify": "^1.3.0",
+    "mouse-change": "^1.3.0",
+    "mouse-wheel": "^1.2.0",
+    "regl": "^1.2.1"
+  }
+}
