@@ -19,8 +19,6 @@ vec4 domainColoring (vec2 z, vec2 gridSpacing, float saturation, float gridStren
   float circ = (fract(log2(cmod)) - 0.5) * 2.0;
   circ = pow(abs(circ), linePower);
 
-  return vec4(vec3(circ), 1.0);
-
   circ *= magStrength;
 
   vec3 rgb = hsv2rgb(vec3(carg * 0.5 / M_PI, saturation, 0.5 + 0.5 * saturation - gridStrength * grid));
