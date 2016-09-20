@@ -2,6 +2,10 @@ precision highp float;
 
 #pragma glslify: domainColoring = require(../../index)
 
+float sqr (float x) {
+  return x * x;
+}
+
 varying vec2 z;
 uniform float saturation, gridStrength, magStrength, gridSpacing, linePower;
 
@@ -21,8 +25,8 @@ void main () {
   float b4 = b2 * b2;
 
   vec2 f = vec2(
-    (cos(a)*cosh(b)*cosh(4.0*a*b3-4.0*a3*b)*sin(b4-6.0*a2*b2+a4-1.0)+sin(a)*sinh(b)*sinh(4.0*a*b3-4.0*a3*b)*cos(b4-6.0*a2*b2+a4-1.0))/(pow(cosh(4.0*a*b3-4.0*a3*b), 2.0)*pow(sin(b4-6.0*a2*b2+a4-1.0), 2.0)+pow(sinh(4.0*a*b3-4.0*a3*b), 2.0)*pow(cos(b4-6.0*a2*b2+a4-1.0), 2.0)),
-    (cos(a)*cosh(b)*sinh(4.0*a*b3-4.0*a3*b)*cos(b4-6.0*a2*b2+a4-1.0)-sin(a)*sinh(b)*cosh(4.0*a*b3-4.0*a3*b)*sin(b4-6.0*a2*b2+a4-1.0))/(pow(cosh(4.0*a*b3-4.0*a3*b), 2.0)*pow(sin(b4-6.0*a2*b2+a4-1.0), 2.0)+pow(sinh(4.0*a*b3-4.0*a3*b), 2.0)*pow(cos(b4-6.0*a2*b2+a4-1.0), 2.0))
+    (cos(a)*cosh(b)*cosh(4.0*a*b3-4.0*a3*b)*sin(b4-6.0*a2*b2+a4-1.0)+sin(a)*sinh(b)*sinh(4.0*a*b3-4.0*a3*b)*cos(b4-6.0*a2*b2+a4-1.0))/(sqr(cosh(4.0*a*b3-4.0*a3*b))*sqr(sin(b4-6.0*a2*b2+a4-1.0))+sqr(sinh(4.0*a*b3-4.0*a3*b))*sqr(cos(b4-6.0*a2*b2+a4-1.0))),
+    (cos(a)*cosh(b)*sinh(4.0*a*b3-4.0*a3*b)*cos(b4-6.0*a2*b2+a4-1.0)-sin(a)*sinh(b)*cosh(4.0*a*b3-4.0*a3*b)*sin(b4-6.0*a2*b2+a4-1.0))/(sqr(cosh(4.0*a*b3-4.0*a3*b))*sqr(sin(b4-6.0*a2*b2+a4-1.0))+sqr(sinh(4.0*a*b3-4.0*a3*b))*sqr(cos(b4-6.0*a2*b2+a4-1.0)))
   );
 
   gl_FragColor = domainColoring(f, vec2(gridSpacing), saturation, gridStrength, magStrength, linePower);

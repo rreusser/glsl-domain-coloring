@@ -1,11 +1,11 @@
 {
   "name": "glsl-domain-coloring",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "A glslify module for domain coloring in the complex plane",
   "glslify": "index.glsl",
   "scripts": {
     "build": "for i in docs/src/*.js; do out=`echo $i |sed -e \"s/src\\/\\([^\\.]*\\)\\.js/\\1.html/\"`; browserify $i -t glslify | indexhtmlify > $out; done",
-    "start": "budo docs/src/z.js --live --open -- -t glslify"
+    "start": "budo docs/src/eqn.js --live --open -- -t glslify"
   },
   "keywords": [
     "glsl",
