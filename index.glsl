@@ -1,11 +1,11 @@
 #pragma glslify: hsv2rgb = require(glsl-hsv2rgb)
-
+#pragma glslify: hypot = require(glsl-hypot)
 
 #define M_PI 3.1415926535897932384626433832795
 
 vec4 domainColoring (vec2 z, vec2 gridSpacing, float saturation, float gridStrength, float magStrength, float linePower) {
   float carg = atan(z.y, z.x);
-  float cmod = sqrt(z.x * z.x + z.y * z.y);
+  float cmod = hypot(z);
 
   float rebrt = (fract(z.x / gridSpacing.x) - 0.5) * 2.0;
   rebrt *= rebrt;
