@@ -1,6 +1,6 @@
 {
   "name": "glsl-domain-coloring",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A glslify module for domain coloring in the complex plane",
   "glslify": "index.glsl",
   "scripts": {
@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "glsl-hsv2rgb": "^1.0.0",
-    "glsl-hypot": "^1.0.0"
+    "glsl-hypot": "^1.0.1"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
