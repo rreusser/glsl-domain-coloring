@@ -24,7 +24,7 @@ The function `f(z) = 1 / z` in the same range results in the map:
   <a href="http://rreusser.github.io/glsl-domain-coloring/recip.html"><img src="docs/images/recip.jpg" width="300" height="300" alt="f(z) = 1 / z"></a>
 </p>
 
-In the second example, the behavior as a pole of the function is visible by the bunching up of the grid lines as the magnitude contours get closer and closer. In the first example, the bunching up of the magnitude contours without bunching up of the grid lines means it is a zero.
+In the second example, the pole of the function is indicated by the bunching up of the grid lines as the white magnitude contours get closer and closer to the pole. In the first example though, the bunching up of the white magnitude contours without bunching up of the black grid lines indicates that it's a zero rather than a pole.
 
 ## Examples
 
