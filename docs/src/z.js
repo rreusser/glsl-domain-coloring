@@ -16,7 +16,7 @@ var camera = camera2d(regl, {
   constrain: 'y'
 });
 
-const complexMap = regl({
+var complexMap = regl({
   frag: frag,
   vert: `
     precision highp float;
@@ -71,9 +71,9 @@ for (var i = 0; i < events.length; i++) {
 
 var isDirty = true;
 
-regl.frame(() => {
-  camera(({dirty}) => {
-    isDirty = isDirty || dirty;
+regl.frame(function() {
+  camera(function(data) {
+    isDirty = isDirty || data.dirty;
 
     if (!isDirty) return;
 

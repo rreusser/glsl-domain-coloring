@@ -14,10 +14,12 @@ vec4 domainColoring (vec2 z, vec2 gridSpacing, float saturation, float gridStren
   imbrt *= imbrt;
 
   float grid = 1.0 - (1.0 - rebrt) * (1.0 - imbrt);
-  grid = pow(grid, linePower);
+  grid = pow(abs(grid), linePower);
 
   float circ = (fract(log2(cmod)) - 0.5) * 2.0;
-  circ = pow(circ, linePower);
+  circ = pow(abs(circ), linePower);
+
+  return vec4(vec3(circ), 1.0);
 
   circ *= magStrength;
 
