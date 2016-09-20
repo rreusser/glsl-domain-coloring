@@ -1,6 +1,6 @@
 {
   "name": "glsl-domain-coloring",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A glslify module for domain coloring in the complex plane",
   "glslify": "index.glsl",
   "scripts": {
