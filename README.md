@@ -63,6 +63,7 @@ Arguments:
 - `magStrength`: the strength of the magnitude contours, from zero to one
 - `linePower`: the strength of the lines, as a positive floating point number. Larger numbers result in sharper contours.
 
+
 ## License
 
 &copy; 2016 Ricky Reusser. MIT License.
