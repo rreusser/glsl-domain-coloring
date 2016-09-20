@@ -174,7 +174,7 @@ var camera2d = require('./lib/camera-2d');
 
 var controlPanel = require('control-panel');
 
-var frag = "precision highp float;\n#define GLSLIFY 1\n\nvec3 hsv2rgb(vec3 c) {\n  vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\n  vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);\n  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);\n}\n\n#define M_PI 3.1415926535897932384626433832795\n\nvec4 domainColoring (vec2 z_0, vec2 gridSpacing_0, float saturation_0, float gridStrength_0, float magStrength_0, float contourPower_0) {\n  float carg = atan(z_0.y, z_0.x);\n  float cmod = sqrt(z_0.x * z_0.x + z_0.y * z_0.y);\n\n  float rebrt = (fract(z_0.x / gridSpacing_0.x) - 0.5) * 2.0;\n  rebrt *= rebrt;\n\n  float imbrt = (fract(z_0.y / gridSpacing_0.y) - 0.5) * 2.0;\n  imbrt *= imbrt;\n\n  float grid = 1.0 - (1.0 - rebrt) * (1.0 - imbrt);\n  grid = pow(grid, contourPower_0);\n\n  float circ = (fract(log2(cmod)) - 0.5) * 2.0;\n  circ = pow(circ, contourPower_0);\n\n  circ *= magStrength_0;\n\n  vec3 rgb = hsv2rgb(vec3(carg * 0.5 / M_PI, saturation_0, 0.5 + 0.5 * saturation_0 - gridStrength_0 * grid));\n  rgb *= (1.0 - circ);\n  rgb += circ * vec3(1.0);\n  return vec4(rgb, 1.0);\n}\n\nvarying vec2 z;\n\nuniform float saturation, gridStrength, magStrength, gridSpacing, contourPower;\n\nvoid main () {\n  gl_FragColor = domainColoring(z, vec2(gridSpacing), saturation, gridStrength, magStrength, contourPower);\n}\n";
+var frag = "precision highp float;\n#define GLSLIFY 1\n\nvec3 hsv2rgb(vec3 c) {\n  vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\n  vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);\n  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);\n}\n\n#define M_PI 3.1415926535897932384626433832795\n\nvec4 domainColoring (vec2 z_0, vec2 gridSpacing_0, float saturation_0, float gridStrength_0, float magStrength_0, float linePower_0) {\n  float carg = atan(z_0.y, z_0.x);\n  float cmod = sqrt(z_0.x * z_0.x + z_0.y * z_0.y);\n\n  float rebrt = (fract(z_0.x / gridSpacing_0.x) - 0.5) * 2.0;\n  rebrt *= rebrt;\n\n  float imbrt = (fract(z_0.y / gridSpacing_0.y) - 0.5) * 2.0;\n  imbrt *= imbrt;\n\n  float grid = 1.0 - (1.0 - rebrt) * (1.0 - imbrt);\n  grid = pow(grid, linePower_0);\n\n  float circ = (fract(log2(cmod)) - 0.5) * 2.0;\n  circ = pow(circ, linePower_0);\n\n  circ *= magStrength_0;\n\n  vec3 rgb = hsv2rgb(vec3(carg * 0.5 / M_PI, saturation_0, 0.5 + 0.5 * saturation_0 - gridStrength_0 * grid));\n  rgb *= (1.0 - circ);\n  rgb += circ * vec3(1.0);\n  return vec4(rgb, 1.0);\n}\n\nvarying vec2 z;\n\nuniform float saturation, gridStrength, magStrength, gridSpacing, linePower;\n\nvoid main () {\n  gl_FragColor = domainColoring(z, vec2(gridSpacing), saturation, gridStrength, magStrength, linePower);\n}\n";
 
 var camera = camera2d(regl, {
   xmin: -2,
@@ -203,7 +203,7 @@ const complexMap = regl({
     gridSpacing: regl.prop('gridSpacing'),
     gridStrength: regl.prop('gridStrength'),
     magStrength: regl.prop('magStrength'),
-    contourPower: regl.prop('contourPower'),
+    linePower: regl.prop('linePower'),
   },
   attributes: {position: [[-2, -2], [2, -2], [0, 4]]},
   depth: {enable: false},
@@ -215,7 +215,7 @@ var state = {
   gridStrength: 0.5,
   magStrength: 0.7,
   gridSpacing: 1.0,
-  contourPower: 8.0
+  linePower: 8.0
 };
 
 controlPanel([
@@ -223,7 +223,7 @@ controlPanel([
   {label: 'gridStrength', type: 'range', min: 0, max: 1, initial: state.gridStrength, step: 0.01},
   {label: 'magStrength', type: 'range', min: 0, max: 1, initial: state.magStrength, step: 0.01},
   {label: 'gridSpacing', type: 'range', min: 0.1, max: 10, initial: state.gridSpacing, step: 0.01},
-  {label: 'contourPower', type: 'range', min: 1.0, max: 16, initial: state.contourPower, step: 0.1}
+  {label: 'linePower', type: 'range', min: 1.0, max: 16, initial: state.linePower, step: 0.1}
 ], {theme: 'dark', position: 'top-left'}).on('input', function (data) {
   Object.assign(state, data);
   isDirty = true;
