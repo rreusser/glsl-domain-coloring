@@ -3,7 +3,7 @@
 
 #define M_PI 3.1415926535897932384626433832795
 
-vec4 domainColoring (vec2 z, vec2 gridSpacing, float saturation, float gridStrength, float magStrength) {
+vec4 domainColoring (vec2 z, vec2 gridSpacing, float saturation, float gridStrength, float magStrength, float contourPower) {
   float carg = atan(z.y, z.x);
   float cmod = sqrt(z.x * z.x + z.y * z.y);
 
@@ -14,14 +14,10 @@ vec4 domainColoring (vec2 z, vec2 gridSpacing, float saturation, float gridStren
   imbrt *= imbrt;
 
   float grid = 1.0 - (1.0 - rebrt) * (1.0 - imbrt);
-  grid *= grid;
-  grid *= grid;
-  grid *= grid;
+  grid = pow(grid, contourPower);
 
   float circ = (fract(log2(cmod)) - 0.5) * 2.0;
-  circ *= circ;
-  circ *= circ;
-  circ *= circ;
+  circ = pow(circ, contourPower);
 
   circ *= magStrength;
 

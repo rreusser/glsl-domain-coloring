@@ -4,8 +4,8 @@ precision highp float;
 
 varying vec2 z;
 
-uniform float saturation, gridStrength, magStrength, gridSpacing;
+uniform float saturation, gridStrength, magStrength, gridSpacing, contourPower;
 
 void main () {
-  gl_FragColor = domainColoring(z, vec2(gridSpacing), saturation, gridStrength, magStrength);
+  gl_FragColor = domainColoring(z, vec2(gridSpacing), saturation, gridStrength, magStrength, contourPower);
 }

@@ -61,6 +61,7 @@ Arguments:
 - `saturation`: the saturation of the coloring, from zero to one
 - `gridStrength`: the strength of the rectangular grid, from zero to one
 - `magStrength`: the strength of the magnitude contours, from zero to one
+- `contourPower`: the strength of the lines, as a positive floating point number. Larger numbers result in sharper contours.
 
 ## License
 

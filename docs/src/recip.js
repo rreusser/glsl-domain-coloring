@@ -34,6 +34,7 @@ const complexMap = regl({
     gridSpacing: regl.prop('gridSpacing'),
     gridStrength: regl.prop('gridStrength'),
     magStrength: regl.prop('magStrength'),
+    contourPower: regl.prop('contourPower'),
   },
   attributes: {position: [[-2, -2], [2, -2], [0, 4]]},
   depth: {enable: false},
@@ -44,14 +45,16 @@ var state = {
   saturation: 0.9,
   gridStrength: 0.5,
   magStrength: 0.7,
-  gridSpacing: 1.0
+  gridSpacing: 1.0,
+  contourPower: 8.0
 };
 
 controlPanel([
-  {label: 'saturation', type: 'range', min: 0, max: 1, initial: state.saturation},
-  {label: 'gridStrength', type: 'range', min: 0, max: 1, initial: state.gridStrength},
-  {label: 'magStrength', type: 'range', min: 0, max: 1, initial: state.magStrength},
-  {label: 'gridSpacing', type: 'range', min: 0.1, max: 10, initial: state.gridSpacing}
+  {label: 'saturation', type: 'range', min: 0, max: 1, initial: state.saturation, step: 0.01},
+  {label: 'gridStrength', type: 'range', min: 0, max: 1, initial: state.gridStrength, step: 0.01},
+  {label: 'magStrength', type: 'range', min: 0, max: 1, initial: state.magStrength, step: 0.01},
+  {label: 'gridSpacing', type: 'range', min: 0.1, max: 10, initial: state.gridSpacing, step: 0.01},
+  {label: 'contourPower', type: 'range', min: 1, max: 16, initial: state.contourPower, step: 0.1}
 ], {theme: 'dark', position: 'top-left'}).on('input', function (data) {
   Object.assign(state, data);
   isDirty = true;
