@@ -247,6 +247,13 @@ function createCamera2d (regl, props) {
     setupCamera[name] = cameraState[name]
   })
 
+  setupCamera.getBounds = function() {
+    return {
+      x: [xmin, xmax],
+      y: [ymin, ymax]
+    };
+  };
+
   return setupCamera
 }
 
