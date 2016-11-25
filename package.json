@@ -4,7 +4,7 @@
   "description": "A glslify module for domain coloring in the complex plane",
   "glslify": "index.glsl",
   "scripts": {
-    "build": "for i in docs/src/*.js; do out=`echo $i |sed -e \"s/src\\/\\([^\\.]*\\)\\.js/\\1.html/\"`; browserify $i -t glslify | indexhtmlify > $out; done",
+    "build": "for i in docs/src/*.js; do out=`echo $i |sed -e \"s/src\\/\\([^\\.]*\\)\\.js/\\1.html/\"`; browserify $i -t glslify | indexhtmlify | metadataify | github-cornerify > $out; done",
     "start": "budo docs/src/zeros.js --live --open -- -t glslify"
   },
   "keywords": [
@@ -21,6 +21,11 @@
     "glsl-hypot": "^1.0.2",
     "complex-zeros-delves-lyness": "git@github.com:rreusser/complex-zeros-delves-lyness.git"
   },
+  "github-corner": {
+    "url": "https://github.com/rreusser/glsl-domain-coloring",
+    "bg": "#fff",
+    "fg": "333"
+  },
   "devDependencies": {
     "browserify": "^13.1.0",
     "budo": "^9.2.0",
@@ -28,10 +33,12 @@
     "complex.js": "^2.0.1",
     "control-panel": "^1.2.0",
     "event-emitter": "^0.3.4",
+    "github-cornerify": "^1.0.6",
     "gl-mat4": "^1.1.4",
     "glsl-hypot": "^1.0.2",
     "glslify": "^5.1.0",
     "indexhtmlify": "^1.3.0",
+    "metadataify": "^1.0.2",
     "mouse-change": "^1.3.0",
     "mouse-wheel": "^1.2.0",
     "regl": "^1.2.1"
